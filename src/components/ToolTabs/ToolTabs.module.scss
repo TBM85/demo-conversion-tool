@@ -5,6 +5,9 @@
   .conversion-output {
     margin: auto;
   }
+  img {
+    transform: rotate(90deg);
+  }
 }
 
 @media (min-width: 576px) {

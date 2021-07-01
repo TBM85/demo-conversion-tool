@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 import classes from "./ToolTabs.module.scss";
-import equals from "../../assets/icons/equals.svg";
+import swap from "../../assets/icons/swap.svg";
 import Select from "../UI/Select/Select";
 
 const toolTabs = [
@@ -32,7 +32,7 @@ const ToolTabs = () => {
               <input type="number" className={classes["conversion-input"]} />
               <Select tab={tab} className={classes["conversion-select"]} />
             </div>
-            <img src={equals} alt="equals" width="20px" height="22px" className={classes["conversion-img"]} />
+            <img src={swap} alt="equals" width="20px" height="22px" className={classes["conversion-img"]} />
             <div className={classes["conversion-control"]}>
               <div className={classes["conversion-output"]}></div>
               <Select tab={tab} className={classes["conversion-select"]} />
