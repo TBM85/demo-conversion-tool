@@ -2,6 +2,7 @@ import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
+import classes from "./ToolTabs.module.scss";
 import equals from "../../assets/icons/equals.svg";
 import Select from "../UI/Select/Select";
 
@@ -17,7 +18,7 @@ const toolTabs = [
 
 const ToolTabs = () => {
   return (
-    <Tabs>
+    <Tabs className={classes.Tabs}>
       <TabList>
         {toolTabs.map((tab) => (
           <Tab key={tab.id}>{tab.title}</Tab>
@@ -25,16 +26,16 @@ const ToolTabs = () => {
       </TabList>
 
       {toolTabs.map((tab) => (
-        <TabPanel key={tab.id}>
-          <div className="conversion-container">
-            <div className="conversion-control">
-              <input type="number" className="conversion-input" />
-              <Select tab={tab} />
+        <TabPanel key={tab.id} className={classes.TabPanel}>
+          <div className={classes["conversion-container"]}>
+            <div className={classes["conversion-control"]}>
+              <input type="number" className={classes["conversion-input"]} />
+              <Select tab={tab} className={classes["conversion-select"]} />
             </div>
-            <img src={equals} alt="equals" width="20px" height="22px" />
-            <div className="conversion-control">
-              <div className="conversion-output"></div>
-              <Select tab={tab} />
+            <img src={equals} alt="equals" width="20px" height="22px" className={classes["conversion-img"]} />
+            <div className={classes["conversion-control"]}>
+              <div className={classes["conversion-output"]}></div>
+              <Select tab={tab} className={classes["conversion-select"]} />
             </div>
           </div>
         </TabPanel>

@@ -1,8 +1,10 @@
 import React from 'react';
 
+import classes from './Select.module.scss';
+
 const Select = (props) => {
   return (
-    <div className="conversion-select">
+    <div className={classes["conversion-select"]}>
       <select
         className="form-control"
         name="select"

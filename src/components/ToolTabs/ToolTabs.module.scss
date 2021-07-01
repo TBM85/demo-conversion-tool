@@ -1,0 +1,51 @@
+@media (max-width: 575px) {
+  .conversion-container {
+    display: block;
+  }
+  .conversion-output {
+    margin: auto;
+  }
+}
+
+@media (min-width: 576px) {
+  .conversion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.Tabs {
+  margin: 1em auto;
+  width: fit-content;
+
+  ul {
+    border-bottom: 1px solid #aaa;
+    margin: 0;
+    padding: 0;
+  }
+
+  .TabPanel {
+    .conversion-container {
+      border-left: 1px solid #aaa;;
+      border-right: 1px solid #aaa;;
+      border-bottom: 1px solid #aaa;
+
+      .conversion-control {
+        padding: 2em;
+    
+        .conversion-input,
+        .conversion-output {
+          border: 1px solid #ccc;
+          border-top-left-radius: 0.1em;
+          border-top-right-radius: 0.1em;
+          font-size: 2em;
+          height: 1.25em;
+          padding: 0.25em;
+          text-align: center;
+          width: 5em;
+        }
+      }
+    }
+  }
+}

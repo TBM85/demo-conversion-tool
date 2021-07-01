@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import ToolTabs from './components/ToolTabs/ToolTabs';
 
 function App() {

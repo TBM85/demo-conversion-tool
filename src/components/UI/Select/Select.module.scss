@@ -1,0 +1,17 @@
+.conversion-select {
+  margin-top: -1px;
+  border: 1px solid #ccc;
+  border-bottom-left-radius: 0.1em;
+  border-bottom-right-radius: 0.1em;
+  font-size: 2em;
+  width: 5.5em;
+  margin: auto;
+  display: flex;
+
+  select {
+    border: none;
+    width: 100%;
+    padding: 0.5em;
+    background: #ececec;
+  }
+}
