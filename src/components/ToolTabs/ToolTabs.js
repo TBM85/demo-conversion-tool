@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 import equals from "../../assets/icons/equals.svg";
+import Select from "../UI/Select/Select";
 
 const toolTabs = [
   {
@@ -28,30 +29,12 @@ const ToolTabs = () => {
           <div className="conversion-container">
             <div className="conversion-control">
               <input type="number" className="conversion-input" />
-              <div className="conversion-select">
-                <select
-                  className="form-control"
-                  name="select"
-                >
-                  {tab.units.map((unit) => (
-                    <option key={unit} value={unit}>{unit}</option>
-                  ))}
-                </select>
-              </div>
+              <Select tab={tab} />
             </div>
             <img src={equals} alt="equals" width="20px" height="22px" />
             <div className="conversion-control">
               <div className="conversion-output"></div>
-              <div className="conversion-select">
-                <select
-                  className="form-control"
-                  name="select"
-                >
-                  {tab.units.map((unit) => (
-                    <option key={unit} value={unit}>{unit}</option>
-                  ))}
-                </select>
-              </div>
+              <Select tab={tab} />
             </div>
           </div>
         </TabPanel>
