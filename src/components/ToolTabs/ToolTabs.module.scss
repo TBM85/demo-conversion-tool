@@ -19,13 +19,20 @@
 }
 
 .Tabs {
-  margin: 1em auto;
+  margin: 0 auto;
   width: fit-content;
 
   ul {
-    border-bottom: 1px solid #aaa;
+    border: 1px solid #aaa;
     margin: 0;
     padding: 0;
+    border-top-left-radius: 0.1em;
+    border-top-right-radius: 0.1em;
+    background: #ececec;
+
+    li {
+      padding: 0.5em 1em 0.8em !important;
+    }
   }
 
   .TabPanel {
@@ -33,6 +40,8 @@
       border-left: 1px solid #aaa;;
       border-right: 1px solid #aaa;;
       border-bottom: 1px solid #aaa;
+      border-bottom-right-radius: 0.1em;
+      border-bottom-left-radius: 0.1em;
 
       .conversion-control {
         padding: 1.8em;
