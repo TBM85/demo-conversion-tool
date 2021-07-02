@@ -52,9 +52,12 @@ const ToolTabs = () => {
   const [outputSelect, setOutputSelect] = useState("meter");
 
   useEffect(() => {
-    setResult(inputValue);
+    // Displays the same output value when both selected options are equal
+    if (inputSelect === outputSelect) {
+      setResult(inputValue);
+    }
 
-  }, [inputValue]);
+  }, [inputSelect, inputValue, outputSelect]);
 
   // Define the default values when you click on a tab
   const changeTabHandler = (event) => {
