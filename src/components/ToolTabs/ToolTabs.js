@@ -47,29 +47,53 @@ const ToolTabs = () => {
   };
 
   const [result, setResult] = useState();
+  
+  const [inputSelect, setInputSelect] = useState("kilometer");
+  const [outputSelect, setOutputSelect] = useState("meter");
+
   useEffect(() => {
     setResult(inputValue);
+
   }, [inputValue]);
 
-  const [inputSelect, setInputSelect] = useState();
-  const inputValueHandler = (selectValue) => {
-    setInputSelect(selectValue);
+  // Define the default values when you click on a tab
+  const changeTabHandler = (event) => {
+    let selectedTab = event.target.hasAttribute("aria-selected");
+    let selectedTabText = event.target.textContent;
+
+    if (selectedTab) {
+      if (selectedTabText === "Length") {
+        setInputSelect(toolTabs[0].units[0]);
+        setOutputSelect(toolTabs[0].units[1]);
+      } else if (selectedTabText === "Temperature") {
+        setInputSelect(toolTabs[1].units[0]);
+        setOutputSelect(toolTabs[1].units[1]);
+      } else if (selectedTabText === "Weight") {
+        setInputSelect(toolTabs[2].units[0]);
+        setOutputSelect(toolTabs[2].units[1]);
+      }
+    }
   }
 
-  console.log(inputSelect);
+  // Change the selected value when you click on another option
+  const changeInputValueHandler = (event) => {
+    let selectedValue = event.target.value;
 
-  const [outputSelect, setOutputSelect] = useState();
-  const outputValueHandler = (selectValue) => {
-    setOutputSelect(selectValue);
-  }
+    setInputSelect(selectedValue);
+  };
 
-  console.log(outputSelect);
+  // Change the selected value when you click on another option
+  const changeOutputValueHandler = (event) => {
+    let selectedValue = event.target.value;
+
+    setOutputSelect(selectedValue);
+  };
 
   return (
     <Tabs className={classes.Tabs}>
       <TabList>
         {toolTabs.map((tab) => (
-          <Tab key={tab.id}>{tab.title}</Tab>
+          <Tab key={tab.id} onClick={changeTabHandler}>{tab.title}</Tab>
         ))}
       </TabList>
 
@@ -83,7 +107,12 @@ const ToolTabs = () => {
                 value={inputValue}
                 onChange={changeValueHandler}
               />
-              <Select tab={tab} className={classes["conversion-select"]} onSelectValue={inputValueHandler} />
+              <Select
+                tab={tab}
+                className={classes["conversion-select"]}
+                value={inputSelect}
+                onChange={changeInputValueHandler}
+              />
             </div>
             <img
               src={swap}
@@ -94,7 +123,12 @@ const ToolTabs = () => {
             />
             <div className={classes["conversion-control"]}>
               <div className={classes["conversion-output"]}>{result}</div>
-              <Select tab={tab} className={classes["conversion-select"]} onSelectValue={outputValueHandler} />
+              <Select
+                tab={tab}
+                className={classes["conversion-select"]}
+                value={outputSelect}
+                onChange={changeOutputValueHandler}
+              />
             </div>
           </div>
         </TabPanel>
