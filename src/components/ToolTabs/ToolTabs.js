@@ -57,6 +57,13 @@ const ToolTabs = () => {
       setResult(inputValue);
     }
 
+    // Display the output values for temperature
+    if (inputSelect === "celsius" && outputSelect === "fahrenheit") {
+      setResult((inputValue * (9/5) + 32).toFixed(2));
+    } else if (inputSelect === "fahrenheit" && outputSelect === "celsius") {
+      setResult(((inputValue - 32) * (5/9)).toFixed(2));
+    }
+
   }, [inputSelect, inputValue, outputSelect]);
 
   // Define the default values when you click on a tab
