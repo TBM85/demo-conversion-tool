@@ -6,41 +6,9 @@ import classes from "./ToolTabs.module.scss";
 import swap from "../../assets/icons/swap.svg";
 import Select from "../UI/Select/Select";
 
-const toolTabs = [
-  {
-    id: 1,
-    title: "Length",
-    units: [
-      "kilometer",
-      "meter",
-      "centimeter",
-      "millimeter",
-      "micrometer",
-      "nanometer",
-      "mile",
-      "yard",
-      "foot",
-      "inch",
-    ],
-  },
-  { id: 2, title: "Temperature", units: ["celsius", "fahrenheit"] },
-  {
-    id: 3,
-    title: "Weight",
-    units: [
-      "kilogram",
-      "gram",
-      "milligram",
-      "microgram",
-      "tonne",
-      "stone",
-      "pound",
-      "ounce",
-    ],
-  },
-];
-
-const ToolTabs = () => {
+const ToolTabs = (props) => {
+  const { toolTabs } = props;
+  
   const [inputValue, setInputValue] = useState(1);
   const changeValueHandler = (event) => {
     setInputValue(event.target.value);
