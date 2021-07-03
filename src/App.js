@@ -12,8 +12,6 @@ const toolTabs = [
       "meter",
       "centimeter",
       "millimeter",
-      "micrometer",
-      "nanometer",
       "mile",
       "yard",
       "foot",

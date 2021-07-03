@@ -25,6 +25,28 @@ const ToolTabs = (props) => {
       setResult(inputValue);
     }
 
+    // Display the output values for the combination of the following units:
+    // kilometer, meter, millimeter, kilogram, gram, and milligram
+    if (inputSelect === "kilometer" || inputSelect === "kilogram") {
+      if (outputSelect === "meter" || outputSelect === "gram") {
+        setResult(inputValue * 1000);
+      } else if (outputSelect === "millimeter" || outputSelect === "milligram") {
+        setResult(inputValue * 1000000);
+      }
+    } else if (inputSelect === "meter" || inputSelect === "gram") {
+      if (outputSelect === "kilometer" || outputSelect === "kilogram") {
+        setResult(inputValue / 1000);
+      } else if (outputSelect === "millimeter" || outputSelect === "milligram") {
+        setResult(inputValue * 1000);
+      }
+    } else if (inputSelect === "millimeter" || inputSelect === "milligram") {
+      if (outputSelect === "kilometer" || outputSelect === "kilogram") {
+        setResult(inputValue / 1000000);
+      } else if (outputSelect === "meter" || outputSelect === "gram") {
+        setResult(inputValue / 1000);
+      }
+    }
+
     // Display the output values for temperature
     if (inputSelect === "celsius" && outputSelect === "fahrenheit") {
       setResult((inputValue * (9/5) + 32).toFixed(2));
