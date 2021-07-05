@@ -20,10 +20,15 @@ const ToolTabs = (props) => {
   const [outputSelect, setOutputSelect] = useState("meter");
 
   useEffect(() => {
-    let mileMultiplier = 1.60934;
-    let yardMultiplier = 1093.61329;
-    let footMultiplier = 3280.83989;
-    let inchMultiplier = 39370.07874;
+    const mileMultiplier = 1.60934;
+    const yardMultiplier = 1093.61329;
+    const footMultiplier = 3280.83989;
+    const inchMultiplier = 39370.07874;
+
+    const tonneMultiplier = 1000;
+    const stoneMultiplier = 6.35029;
+    const poundMultiplier = stoneMultiplier / 14;
+    const ounceMultiplier = poundMultiplier / 16;
 
     // Displays the same output value when both selected options are equal
     if (inputSelect === outputSelect) {
@@ -64,25 +69,25 @@ const ToolTabs = (props) => {
       if (outputSelect === "centimeter") {
         setResult(inputValue * 100000);
       } else if (outputSelect === "mile") {
-        setResult((inputValue / mileMultiplier).toFixed(4));
+        setResult(inputValue / mileMultiplier);
       } else if (outputSelect === "yard") {
-        setResult((inputValue * yardMultiplier).toFixed(2));
+        setResult(inputValue * yardMultiplier);
       } else if (outputSelect === "foot") {
-        setResult((inputValue * footMultiplier).toFixed(2));
+        setResult(inputValue * footMultiplier);
       } else if (outputSelect === "inch") {
-        setResult((inputValue * inchMultiplier).toFixed(2));
+        setResult(inputValue * inchMultiplier);
       }
     } else if (inputSelect === "meter") {
       if (outputSelect === "centimeter") {
         setResult(inputValue * 100);
       } else if (outputSelect === "mile") {
-        setResult(((inputValue / mileMultiplier) / 1000).toFixed(6));
+        setResult((inputValue / mileMultiplier) / 1000);
       } else if (outputSelect === "yard") {
-        setResult(((inputValue * yardMultiplier) / 1000).toFixed(6));
+        setResult((inputValue * yardMultiplier) / 1000);
       } else if (outputSelect === "foot") {
-        setResult(((inputValue * footMultiplier) / 1000).toFixed(6));
+        setResult((inputValue * footMultiplier) / 1000);
       } else if (outputSelect === "inch") {
-        setResult(((inputValue * inchMultiplier) / 1000).toFixed(6));
+        setResult((inputValue * inchMultiplier) / 1000);
       }
     } else if (inputSelect === "centimeter") {
       if (outputSelect === "kilometer") {
@@ -92,31 +97,31 @@ const ToolTabs = (props) => {
       } else if (outputSelect === "millimeter") {
         setResult(inputValue * 10);
       } else if (outputSelect === "mile") {
-        setResult(((inputValue / mileMultiplier) / 100000).toFixed(6));
+        setResult((inputValue / mileMultiplier) / 100000);
       } else if (outputSelect === "yard") {
-        setResult(((inputValue * yardMultiplier) / 100000).toFixed(6));
+        setResult((inputValue * yardMultiplier) / 100000);
       } else if (outputSelect === "foot") {
-        setResult(((inputValue * footMultiplier) / 100000).toFixed(6));
+        setResult((inputValue * footMultiplier) / 100000);
       } else if (outputSelect === "inch") {
-        setResult(((inputValue * inchMultiplier) / 100000).toFixed(6));
+        setResult((inputValue * inchMultiplier) / 100000);
       }
     } else if (inputSelect === "millimeter") {
       if (outputSelect === "centimeter") {
         setResult(inputValue / 10);
       } else if (outputSelect === "mile") {
-        setResult(((inputValue / mileMultiplier) / 1000000).toFixed(6));
+        setResult((inputValue / mileMultiplier) / 1000000);
       } else if (outputSelect === "yard") {
-        setResult(((inputValue * yardMultiplier) / 1000000).toFixed(6));
+        setResult((inputValue * yardMultiplier) / 1000000);
       } else if (outputSelect === "foot") {
-        setResult(((inputValue * footMultiplier) / 1000000).toFixed(6));
+        setResult((inputValue * footMultiplier) / 1000000);
       } else if (outputSelect === "inch") {
-        setResult(((inputValue * inchMultiplier) / 1000000).toFixed(6));
+        setResult((inputValue * inchMultiplier) / 1000000);
       }
     } else if (inputSelect === "mile") {
       if (outputSelect === "kilometer") {
-        setResult((inputValue * mileMultiplier).toFixed(3));
+        setResult(inputValue * mileMultiplier);
       } else if (outputSelect === "meter") {
-        setResult((inputValue * mileMultiplier * 1000).toFixed(2));
+        setResult(inputValue * mileMultiplier * 1000);
       } else if (outputSelect === "centimeter") {
         setResult((inputValue * mileMultiplier * 100000));
       } else if (outputSelect === "millimeter") {
@@ -130,15 +135,15 @@ const ToolTabs = (props) => {
       }
     } else if (inputSelect === "yard") {
       if (outputSelect === "kilometer") {
-        setResult((inputValue / yardMultiplier).toFixed(6));
+        setResult(inputValue / yardMultiplier);
       } else if (outputSelect === "meter") {
-        setResult((inputValue / yardMultiplier * 1000).toFixed(4));
+        setResult(inputValue / yardMultiplier * 1000);
       } else if (outputSelect === "centimeter") {
-        setResult((inputValue / yardMultiplier * 100000).toFixed(2));
+        setResult(inputValue / yardMultiplier * 100000);
       } else if (outputSelect === "millimeter") {
-        setResult((inputValue / yardMultiplier * 1000000).toFixed(2));
+        setResult(inputValue / yardMultiplier * 1000000);
       } else if (outputSelect === "mile") {
-        setResult((inputValue / 1760).toFixed(6));
+        setResult(inputValue / 1760);
       } else if (outputSelect === "foot") {
         setResult(inputValue * 3);
       } else if (outputSelect === "inch") {
@@ -146,13 +151,13 @@ const ToolTabs = (props) => {
       }
     } else if (inputSelect === "foot") {
       if (outputSelect === "kilometer") {
-        setResult((inputValue / footMultiplier).toFixed(6));
+        setResult(inputValue / footMultiplier);
       } else if (outputSelect === "meter") {
-        setResult((inputValue / footMultiplier * 1000).toFixed(4));
+        setResult(inputValue / footMultiplier * 1000);
       } else if (outputSelect === "centimeter") {
-        setResult((inputValue / footMultiplier * 100000).toFixed(2));
+        setResult(inputValue / footMultiplier * 100000);
       } else if (outputSelect === "millimeter") {
-        setResult((inputValue / footMultiplier * 1000000).toFixed(2));
+        setResult(inputValue / footMultiplier * 1000000);
       } else if (outputSelect === "mile") {
         setResult((inputValue / 5280).toFixed(6));
       } else if (outputSelect === "yard") {
@@ -162,19 +167,108 @@ const ToolTabs = (props) => {
       }
     } else if (inputSelect === "inch") {
       if (outputSelect === "kilometer") {
-        setResult((inputValue / inchMultiplier).toFixed(6));
+        setResult(inputValue / inchMultiplier);
       } else if (outputSelect === "meter") {
-        setResult((inputValue / inchMultiplier * 1000).toFixed(4));
+        setResult(inputValue / inchMultiplier * 1000);
       } else if (outputSelect === "centimeter") {
-        setResult((inputValue / inchMultiplier * 100000).toFixed(2));
+        setResult(inputValue / inchMultiplier * 100000);
       } else if (outputSelect === "millimeter") {
-        setResult((inputValue / inchMultiplier * 1000000).toFixed(2));
+        setResult(inputValue / inchMultiplier * 1000000);
       } else if (outputSelect === "mile") {
-        setResult((inputValue / 63360).toFixed(6));
+        setResult(inputValue / 63360);
       } else if (outputSelect === "yard") {
-        setResult((inputValue / 36).toFixed(6));
+        setResult(inputValue / 36);
       } else if (outputSelect === "foot") {
-        setResult((inputValue / 12).toFixed(6));
+        setResult(inputValue / 12);
+      }
+    }
+
+    // Display the output values for weight
+    if (inputSelect === "kilogram") {
+      if (outputSelect === "tonne") {
+        setResult(inputValue / tonneMultiplier);
+      } else if (outputSelect === "stone") {
+        setResult(inputValue / stoneMultiplier);
+      } else if (outputSelect === "pound") {
+        setResult(inputValue / poundMultiplier);
+      } else if (outputSelect === "ounce") {
+        setResult(inputValue / ounceMultiplier);
+      }
+    } else if (inputSelect === "gram") {
+      if (outputSelect === "tonne") {
+        setResult(inputValue / (tonneMultiplier * 1000));
+      } else if (outputSelect === "stone") {
+        setResult(inputValue / (stoneMultiplier * 1000));
+      } else if (outputSelect === "pound") {
+        setResult(inputValue / (poundMultiplier * 1000));
+      } else if (outputSelect === "ounce") {
+        setResult(inputValue / (ounceMultiplier * 1000));
+      }
+    } else if (inputSelect === "milligram") {
+      if (outputSelect === "tonne") {
+        setResult(inputValue / (tonneMultiplier * 1000000));
+      } else if (outputSelect === "stone") {
+        setResult(inputValue / (stoneMultiplier * 1000000));
+      } else if (outputSelect === "pound") {
+        setResult(inputValue / (poundMultiplier * 1000000));
+      } else if (outputSelect === "ounce") {
+        setResult(inputValue / (ounceMultiplier * 1000000));
+      }
+    } else if (inputSelect === "tonne") {
+      if (outputSelect === "kilogram") {
+        setResult(inputValue * tonneMultiplier);
+      } else if (outputSelect === "gram") {
+        setResult(inputValue * tonneMultiplier * 1000);
+      } else if (outputSelect === "milligram") {
+        setResult(inputValue * tonneMultiplier * 1000000);
+      } else if (outputSelect === "stone") {
+        setResult(inputValue / stoneMultiplier * 1000);
+      } else if (outputSelect === "pound") {
+        setResult(inputValue / poundMultiplier * 1000);
+      } else if (outputSelect === "ounce") {
+        setResult(inputValue / ounceMultiplier * 1000);
+      }
+    } else if (inputSelect === "stone") {
+      if (outputSelect === "kilogram") {
+        setResult(inputValue * stoneMultiplier);
+      } else if (outputSelect === "gram") {
+        setResult(inputValue * stoneMultiplier * 1000);
+      } else if (outputSelect === "milligram") {
+        setResult(inputValue * stoneMultiplier * 1000000);
+      } else if (outputSelect === "tonne") {
+        setResult(inputValue * stoneMultiplier / 1000);
+      } else if (outputSelect === "pound") {
+        setResult(inputValue * (stoneMultiplier / poundMultiplier));
+      } else if (outputSelect === "ounce") {
+        setResult(inputValue * (stoneMultiplier / ounceMultiplier));
+      }
+    } else if (inputSelect === "pound") {
+      if (outputSelect === "kilogram") {
+        setResult(inputValue * poundMultiplier);
+      } else if (outputSelect === "gram") {
+        setResult(inputValue * poundMultiplier * 1000);
+      } else if (outputSelect === "milligram") {
+        setResult(inputValue * poundMultiplier * 1000000);
+      } else if (outputSelect === "tonne") {
+        setResult(inputValue * poundMultiplier / 1000);
+      } else if (outputSelect === "stone") {
+        setResult(inputValue / (stoneMultiplier / poundMultiplier));
+      } else if (outputSelect === "ounce") {
+        setResult(inputValue * (poundMultiplier / ounceMultiplier));
+      }
+    } else if (inputSelect === "ounce") {
+      if (outputSelect === "kilogram") {
+        setResult(inputValue * ounceMultiplier);
+      } else if (outputSelect === "gram") {
+        setResult(inputValue * ounceMultiplier * 1000);
+      } else if (outputSelect === "milligram") {
+        setResult(inputValue * ounceMultiplier * 1000000);
+      } else if (outputSelect === "tonne") {
+        setResult(inputValue * ounceMultiplier / 1000);
+      } else if (outputSelect === "stone") {
+        setResult(inputValue / (stoneMultiplier / ounceMultiplier));
+      } else if (outputSelect === "pound") {
+        setResult(inputValue / (poundMultiplier / ounceMultiplier));
       }
     }
 

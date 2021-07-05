@@ -26,7 +26,6 @@ const toolTabs = [
       "kilogram",
       "gram",
       "milligram",
-      "microgram",
       "tonne",
       "stone",
       "pound",
