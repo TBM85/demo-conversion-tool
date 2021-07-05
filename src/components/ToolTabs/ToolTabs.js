@@ -20,6 +20,11 @@ const ToolTabs = (props) => {
   const [outputSelect, setOutputSelect] = useState("meter");
 
   useEffect(() => {
+    let mileMultiplier = 1.60934;
+    let yardMultiplier = 1093.61329;
+    let footMultiplier = 3280.83989;
+    let inchMultiplier = 39370.07874;
+
     // Displays the same output value when both selected options are equal
     if (inputSelect === outputSelect) {
       setResult(inputValue);
@@ -52,6 +57,125 @@ const ToolTabs = (props) => {
       setResult((inputValue * (9/5) + 32).toFixed(2));
     } else if (inputSelect === "fahrenheit" && outputSelect === "celsius") {
       setResult(((inputValue - 32) * (5/9)).toFixed(2));
+    }
+
+    // Display the output values for length
+    if (inputSelect === "kilometer") {
+      if (outputSelect === "centimeter") {
+        setResult(inputValue * 100000);
+      } else if (outputSelect === "mile") {
+        setResult((inputValue / mileMultiplier).toFixed(4));
+      } else if (outputSelect === "yard") {
+        setResult((inputValue * yardMultiplier).toFixed(2));
+      } else if (outputSelect === "foot") {
+        setResult((inputValue * footMultiplier).toFixed(2));
+      } else if (outputSelect === "inch") {
+        setResult((inputValue * inchMultiplier).toFixed(2));
+      }
+    } else if (inputSelect === "meter") {
+      if (outputSelect === "centimeter") {
+        setResult(inputValue * 100);
+      } else if (outputSelect === "mile") {
+        setResult(((inputValue / mileMultiplier) / 1000).toFixed(6));
+      } else if (outputSelect === "yard") {
+        setResult(((inputValue * yardMultiplier) / 1000).toFixed(6));
+      } else if (outputSelect === "foot") {
+        setResult(((inputValue * footMultiplier) / 1000).toFixed(6));
+      } else if (outputSelect === "inch") {
+        setResult(((inputValue * inchMultiplier) / 1000).toFixed(6));
+      }
+    } else if (inputSelect === "centimeter") {
+      if (outputSelect === "kilometer") {
+        setResult(inputValue / 100000);
+      } else if (outputSelect === "meter") {
+        setResult(inputValue / 100);
+      } else if (outputSelect === "millimeter") {
+        setResult(inputValue * 10);
+      } else if (outputSelect === "mile") {
+        setResult(((inputValue / mileMultiplier) / 100000).toFixed(6));
+      } else if (outputSelect === "yard") {
+        setResult(((inputValue * yardMultiplier) / 100000).toFixed(6));
+      } else if (outputSelect === "foot") {
+        setResult(((inputValue * footMultiplier) / 100000).toFixed(6));
+      } else if (outputSelect === "inch") {
+        setResult(((inputValue * inchMultiplier) / 100000).toFixed(6));
+      }
+    } else if (inputSelect === "millimeter") {
+      if (outputSelect === "centimeter") {
+        setResult(inputValue / 10);
+      } else if (outputSelect === "mile") {
+        setResult(((inputValue / mileMultiplier) / 1000000).toFixed(6));
+      } else if (outputSelect === "yard") {
+        setResult(((inputValue * yardMultiplier) / 1000000).toFixed(6));
+      } else if (outputSelect === "foot") {
+        setResult(((inputValue * footMultiplier) / 1000000).toFixed(6));
+      } else if (outputSelect === "inch") {
+        setResult(((inputValue * inchMultiplier) / 1000000).toFixed(6));
+      }
+    } else if (inputSelect === "mile") {
+      if (outputSelect === "kilometer") {
+        setResult((inputValue * mileMultiplier).toFixed(3));
+      } else if (outputSelect === "meter") {
+        setResult((inputValue * mileMultiplier * 1000).toFixed(2));
+      } else if (outputSelect === "centimeter") {
+        setResult((inputValue * mileMultiplier * 100000));
+      } else if (outputSelect === "millimeter") {
+        setResult((inputValue * mileMultiplier * 1000000));
+      } else if (outputSelect === "yard") {
+        setResult(inputValue * 1760);
+      } else if (outputSelect === "foot") {
+        setResult(inputValue * 5280);
+      } else if (outputSelect === "inch") {
+        setResult(inputValue * 63360);
+      }
+    } else if (inputSelect === "yard") {
+      if (outputSelect === "kilometer") {
+        setResult((inputValue / yardMultiplier).toFixed(6));
+      } else if (outputSelect === "meter") {
+        setResult((inputValue / yardMultiplier * 1000).toFixed(4));
+      } else if (outputSelect === "centimeter") {
+        setResult((inputValue / yardMultiplier * 100000).toFixed(2));
+      } else if (outputSelect === "millimeter") {
+        setResult((inputValue / yardMultiplier * 1000000).toFixed(2));
+      } else if (outputSelect === "mile") {
+        setResult((inputValue / 1760).toFixed(6));
+      } else if (outputSelect === "foot") {
+        setResult(inputValue * 3);
+      } else if (outputSelect === "inch") {
+        setResult(inputValue * 36);
+      }
+    } else if (inputSelect === "foot") {
+      if (outputSelect === "kilometer") {
+        setResult((inputValue / footMultiplier).toFixed(6));
+      } else if (outputSelect === "meter") {
+        setResult((inputValue / footMultiplier * 1000).toFixed(4));
+      } else if (outputSelect === "centimeter") {
+        setResult((inputValue / footMultiplier * 100000).toFixed(2));
+      } else if (outputSelect === "millimeter") {
+        setResult((inputValue / footMultiplier * 1000000).toFixed(2));
+      } else if (outputSelect === "mile") {
+        setResult((inputValue / 5280).toFixed(6));
+      } else if (outputSelect === "yard") {
+        setResult((inputValue / 3).toFixed(6));
+      } else if (outputSelect === "inch") {
+        setResult(inputValue * 12);
+      }
+    } else if (inputSelect === "inch") {
+      if (outputSelect === "kilometer") {
+        setResult((inputValue / inchMultiplier).toFixed(6));
+      } else if (outputSelect === "meter") {
+        setResult((inputValue / inchMultiplier * 1000).toFixed(4));
+      } else if (outputSelect === "centimeter") {
+        setResult((inputValue / inchMultiplier * 100000).toFixed(2));
+      } else if (outputSelect === "millimeter") {
+        setResult((inputValue / inchMultiplier * 1000000).toFixed(2));
+      } else if (outputSelect === "mile") {
+        setResult((inputValue / 63360).toFixed(6));
+      } else if (outputSelect === "yard") {
+        setResult((inputValue / 36).toFixed(6));
+      } else if (outputSelect === "foot") {
+        setResult((inputValue / 12).toFixed(6));
+      }
     }
 
   }, [inputSelect, inputValue, outputSelect]);
