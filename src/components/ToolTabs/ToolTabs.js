@@ -8,22 +8,22 @@ import Select from "../UI/Select/Select";
 
 const ToolTabs = (props) => {
   const { toolTabs } = props;
-  
+
   const [inputValue, setInputValue] = useState(1);
   const changeValueHandler = (event) => {
     setInputValue(event.target.value);
   };
 
   const [result, setResult] = useState();
-  
+
   const [inputSelect, setInputSelect] = useState("kilometer");
   const [outputSelect, setOutputSelect] = useState("meter");
 
   useEffect(() => {
-    const mileMultiplier = 1.60934;
-    const yardMultiplier = 1093.61329;
-    const footMultiplier = 3280.83989;
-    const inchMultiplier = 39370.07874;
+    const mileMultiplier = 1.609344;
+    const yardMultiplier = mileMultiplier / 1760;
+    const footMultiplier = yardMultiplier / 3;
+    const inchMultiplier = footMultiplier / 12;
 
     const tonneMultiplier = 1000;
     const stoneMultiplier = 6.35029;
@@ -40,13 +40,19 @@ const ToolTabs = (props) => {
     if (inputSelect === "kilometer" || inputSelect === "kilogram") {
       if (outputSelect === "meter" || outputSelect === "gram") {
         setResult(inputValue * 1000);
-      } else if (outputSelect === "millimeter" || outputSelect === "milligram") {
+      } else if (
+        outputSelect === "millimeter" ||
+        outputSelect === "milligram"
+      ) {
         setResult(inputValue * 1000000);
       }
     } else if (inputSelect === "meter" || inputSelect === "gram") {
       if (outputSelect === "kilometer" || outputSelect === "kilogram") {
         setResult(inputValue / 1000);
-      } else if (outputSelect === "millimeter" || outputSelect === "milligram") {
+      } else if (
+        outputSelect === "millimeter" ||
+        outputSelect === "milligram"
+      ) {
         setResult(inputValue * 1000);
       }
     } else if (inputSelect === "millimeter" || inputSelect === "milligram") {
@@ -59,9 +65,9 @@ const ToolTabs = (props) => {
 
     // Display the output values for temperature
     if (inputSelect === "celsius" && outputSelect === "fahrenheit") {
-      setResult((inputValue * (9/5) + 32).toFixed(2));
+      setResult((inputValue * (9 / 5) + 32).toFixed(2));
     } else if (inputSelect === "fahrenheit" && outputSelect === "celsius") {
-      setResult(((inputValue - 32) * (5/9)).toFixed(2));
+      setResult(((inputValue - 32) * (5 / 9)).toFixed(2));
     }
 
     // Display the output values for length
@@ -71,23 +77,23 @@ const ToolTabs = (props) => {
       } else if (outputSelect === "mile") {
         setResult(inputValue / mileMultiplier);
       } else if (outputSelect === "yard") {
-        setResult(inputValue * yardMultiplier);
+        setResult(inputValue / yardMultiplier);
       } else if (outputSelect === "foot") {
-        setResult(inputValue * footMultiplier);
+        setResult(inputValue / footMultiplier);
       } else if (outputSelect === "inch") {
-        setResult(inputValue * inchMultiplier);
+        setResult(inputValue / inchMultiplier);
       }
     } else if (inputSelect === "meter") {
       if (outputSelect === "centimeter") {
         setResult(inputValue * 100);
       } else if (outputSelect === "mile") {
-        setResult((inputValue / mileMultiplier) / 1000);
+        setResult(inputValue / mileMultiplier / 1000);
       } else if (outputSelect === "yard") {
-        setResult((inputValue * yardMultiplier) / 1000);
+        setResult(inputValue / yardMultiplier / 1000);
       } else if (outputSelect === "foot") {
-        setResult((inputValue * footMultiplier) / 1000);
+        setResult(inputValue / footMultiplier / 1000);
       } else if (outputSelect === "inch") {
-        setResult((inputValue * inchMultiplier) / 1000);
+        setResult(inputValue / inchMultiplier / 1000);
       }
     } else if (inputSelect === "centimeter") {
       if (outputSelect === "kilometer") {
@@ -97,25 +103,25 @@ const ToolTabs = (props) => {
       } else if (outputSelect === "millimeter") {
         setResult(inputValue * 10);
       } else if (outputSelect === "mile") {
-        setResult((inputValue / mileMultiplier) / 100000);
+        setResult(inputValue / mileMultiplier / 100000);
       } else if (outputSelect === "yard") {
-        setResult((inputValue * yardMultiplier) / 100000);
+        setResult(inputValue / yardMultiplier / 100000);
       } else if (outputSelect === "foot") {
-        setResult((inputValue * footMultiplier) / 100000);
+        setResult(inputValue / footMultiplier / 100000);
       } else if (outputSelect === "inch") {
-        setResult((inputValue * inchMultiplier) / 100000);
+        setResult(inputValue / inchMultiplier / 100000);
       }
     } else if (inputSelect === "millimeter") {
       if (outputSelect === "centimeter") {
         setResult(inputValue / 10);
       } else if (outputSelect === "mile") {
-        setResult((inputValue / mileMultiplier) / 1000000);
+        setResult(inputValue / mileMultiplier / 1000000);
       } else if (outputSelect === "yard") {
-        setResult((inputValue * yardMultiplier) / 1000000);
+        setResult(inputValue / yardMultiplier / 1000000);
       } else if (outputSelect === "foot") {
-        setResult((inputValue * footMultiplier) / 1000000);
+        setResult(inputValue / footMultiplier / 1000000);
       } else if (outputSelect === "inch") {
-        setResult((inputValue * inchMultiplier) / 1000000);
+        setResult(inputValue / inchMultiplier / 1000000);
       }
     } else if (inputSelect === "mile") {
       if (outputSelect === "kilometer") {
@@ -123,63 +129,63 @@ const ToolTabs = (props) => {
       } else if (outputSelect === "meter") {
         setResult(inputValue * mileMultiplier * 1000);
       } else if (outputSelect === "centimeter") {
-        setResult((inputValue * mileMultiplier * 100000));
+        setResult(inputValue * mileMultiplier * 100000);
       } else if (outputSelect === "millimeter") {
-        setResult((inputValue * mileMultiplier * 1000000));
+        setResult(inputValue * mileMultiplier * 1000000);
       } else if (outputSelect === "yard") {
-        setResult(inputValue * 1760);
+        setResult((inputValue * mileMultiplier) / yardMultiplier);
       } else if (outputSelect === "foot") {
-        setResult(inputValue * 5280);
+        setResult((inputValue * mileMultiplier) / footMultiplier);
       } else if (outputSelect === "inch") {
-        setResult(inputValue * 63360);
+        setResult((inputValue * mileMultiplier) / inchMultiplier);
       }
     } else if (inputSelect === "yard") {
       if (outputSelect === "kilometer") {
-        setResult(inputValue / yardMultiplier);
+        setResult(inputValue * yardMultiplier);
       } else if (outputSelect === "meter") {
-        setResult(inputValue / yardMultiplier * 1000);
+        setResult(inputValue * yardMultiplier * 1000);
       } else if (outputSelect === "centimeter") {
-        setResult(inputValue / yardMultiplier * 100000);
+        setResult(inputValue * yardMultiplier * 100000);
       } else if (outputSelect === "millimeter") {
-        setResult(inputValue / yardMultiplier * 1000000);
+        setResult(inputValue * yardMultiplier * 1000000);
       } else if (outputSelect === "mile") {
-        setResult(inputValue / 1760);
+        setResult(inputValue / (mileMultiplier / yardMultiplier));
       } else if (outputSelect === "foot") {
-        setResult(inputValue * 3);
+        setResult(inputValue * (yardMultiplier / footMultiplier));
       } else if (outputSelect === "inch") {
-        setResult(inputValue * 36);
+        setResult(inputValue * (yardMultiplier / inchMultiplier));
       }
     } else if (inputSelect === "foot") {
       if (outputSelect === "kilometer") {
-        setResult(inputValue / footMultiplier);
+        setResult(inputValue * footMultiplier);
       } else if (outputSelect === "meter") {
-        setResult(inputValue / footMultiplier * 1000);
+        setResult(inputValue * footMultiplier * 1000);
       } else if (outputSelect === "centimeter") {
-        setResult(inputValue / footMultiplier * 100000);
+        setResult(inputValue * footMultiplier * 100000);
       } else if (outputSelect === "millimeter") {
-        setResult(inputValue / footMultiplier * 1000000);
+        setResult(inputValue * footMultiplier * 1000000);
       } else if (outputSelect === "mile") {
-        setResult((inputValue / 5280).toFixed(6));
+        setResult(inputValue / (mileMultiplier / footMultiplier));
       } else if (outputSelect === "yard") {
-        setResult((inputValue / 3).toFixed(6));
+        setResult(inputValue / (yardMultiplier / footMultiplier));
       } else if (outputSelect === "inch") {
-        setResult(inputValue * 12);
+        setResult(inputValue * (footMultiplier / inchMultiplier));
       }
     } else if (inputSelect === "inch") {
       if (outputSelect === "kilometer") {
-        setResult(inputValue / inchMultiplier);
+        setResult(inputValue * inchMultiplier);
       } else if (outputSelect === "meter") {
-        setResult(inputValue / inchMultiplier * 1000);
+        setResult(inputValue * inchMultiplier * 1000);
       } else if (outputSelect === "centimeter") {
-        setResult(inputValue / inchMultiplier * 100000);
+        setResult(inputValue * inchMultiplier * 100000);
       } else if (outputSelect === "millimeter") {
-        setResult(inputValue / inchMultiplier * 1000000);
+        setResult(inputValue * inchMultiplier * 1000000);
       } else if (outputSelect === "mile") {
-        setResult(inputValue / 63360);
+        setResult(inputValue / (mileMultiplier / inchMultiplier));
       } else if (outputSelect === "yard") {
-        setResult(inputValue / 36);
+        setResult(inputValue / (yardMultiplier / inchMultiplier));
       } else if (outputSelect === "foot") {
-        setResult(inputValue / 12);
+        setResult(inputValue / (footMultiplier / inchMultiplier));
       }
     }
 
@@ -222,11 +228,11 @@ const ToolTabs = (props) => {
       } else if (outputSelect === "milligram") {
         setResult(inputValue * tonneMultiplier * 1000000);
       } else if (outputSelect === "stone") {
-        setResult(inputValue / stoneMultiplier * 1000);
+        setResult((inputValue / stoneMultiplier) * 1000);
       } else if (outputSelect === "pound") {
-        setResult(inputValue / poundMultiplier * 1000);
+        setResult((inputValue / poundMultiplier) * 1000);
       } else if (outputSelect === "ounce") {
-        setResult(inputValue / ounceMultiplier * 1000);
+        setResult((inputValue / ounceMultiplier) * 1000);
       }
     } else if (inputSelect === "stone") {
       if (outputSelect === "kilogram") {
@@ -236,7 +242,7 @@ const ToolTabs = (props) => {
       } else if (outputSelect === "milligram") {
         setResult(inputValue * stoneMultiplier * 1000000);
       } else if (outputSelect === "tonne") {
-        setResult(inputValue * stoneMultiplier / 1000);
+        setResult((inputValue * stoneMultiplier) / 1000);
       } else if (outputSelect === "pound") {
         setResult(inputValue * (stoneMultiplier / poundMultiplier));
       } else if (outputSelect === "ounce") {
@@ -250,7 +256,7 @@ const ToolTabs = (props) => {
       } else if (outputSelect === "milligram") {
         setResult(inputValue * poundMultiplier * 1000000);
       } else if (outputSelect === "tonne") {
-        setResult(inputValue * poundMultiplier / 1000);
+        setResult((inputValue * poundMultiplier) / 1000);
       } else if (outputSelect === "stone") {
         setResult(inputValue / (stoneMultiplier / poundMultiplier));
       } else if (outputSelect === "ounce") {
@@ -264,14 +270,13 @@ const ToolTabs = (props) => {
       } else if (outputSelect === "milligram") {
         setResult(inputValue * ounceMultiplier * 1000000);
       } else if (outputSelect === "tonne") {
-        setResult(inputValue * ounceMultiplier / 1000);
+        setResult((inputValue * ounceMultiplier) / 1000);
       } else if (outputSelect === "stone") {
         setResult(inputValue / (stoneMultiplier / ounceMultiplier));
       } else if (outputSelect === "pound") {
         setResult(inputValue / (poundMultiplier / ounceMultiplier));
       }
     }
-
   }, [inputSelect, inputValue, outputSelect]);
 
   // Define the default values when you click on a tab
@@ -291,7 +296,7 @@ const ToolTabs = (props) => {
         setOutputSelect(toolTabs[2].units[1]);
       }
     }
-  }
+  };
 
   // Change the selected value when you click on another option
   const changeInputValueHandler = (event) => {
@@ -311,7 +316,9 @@ const ToolTabs = (props) => {
     <Tabs className={classes.Tabs}>
       <TabList>
         {toolTabs.map((tab) => (
-          <Tab key={tab.id} onClick={changeTabHandler}>{tab.title}</Tab>
+          <Tab key={tab.id} onClick={changeTabHandler}>
+            {tab.title}
+          </Tab>
         ))}
       </TabList>
 
