@@ -1,12 +1,17 @@
 @media (max-width: 575px) {
   .conversion-container {
     display: block;
-  }
-  .conversion-output {
-    margin: auto;
-  }
-  img {
-    transform: rotate(90deg);
+
+    .conversion-control {
+      padding: 1.2em;
+
+      .conversion-output {
+        margin: auto;
+      }
+    }
+    img {
+      transform: rotate(90deg);
+    }
   }
 }
 
@@ -15,6 +20,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    .conversion-control {
+      padding: 2.2em;
+    }
   }
 }
 
@@ -43,8 +51,14 @@
       border-bottom-right-radius: 0.1em;
       border-bottom-left-radius: 0.1em;
 
+      button {
+        background: none;
+        border: none;
+        padding: 1em;
+        cursor: pointer;
+      }
+
       .conversion-control {
-        padding: 1.8em;
     
         .conversion-input,
         .conversion-output {

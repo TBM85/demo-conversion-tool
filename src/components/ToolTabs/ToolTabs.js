@@ -14,10 +14,49 @@ const ToolTabs = (props) => {
     setInputValue(event.target.value);
   };
 
+  // Define the default values when you click on a tab
+  const changeTabHandler = (event) => {
+    let selectedTab = event.target.hasAttribute("aria-selected");
+    let selectedTabText = event.target.textContent;
+
+    if (selectedTab) {
+      if (selectedTabText === "Length") {
+        setInputSelect(toolTabs[0].units[0]);
+        setOutputSelect(toolTabs[0].units[1]);
+      } else if (selectedTabText === "Temperature") {
+        setInputSelect(toolTabs[1].units[0]);
+        setOutputSelect(toolTabs[1].units[1]);
+      } else if (selectedTabText === "Weight") {
+        setInputSelect(toolTabs[2].units[0]);
+        setOutputSelect(toolTabs[2].units[1]);
+      }
+    }
+  };
+
   const [result, setResult] = useState();
 
   const [inputSelect, setInputSelect] = useState("kilometer");
   const [outputSelect, setOutputSelect] = useState("meter");
+
+  // Change the selected value when you click on another option
+  const changeInputValueHandler = (event) => {
+    let selectedValue = event.target.value;
+
+    setInputSelect(selectedValue);
+  };
+
+  // Change the selected value when you click on another option
+  const changeOutputValueHandler = (event) => {
+    let selectedValue = event.target.value;
+
+    setOutputSelect(selectedValue);
+  };
+
+  // Swap selection units
+  const swapUnitSelectHandler = () => {
+    setInputSelect(outputSelect);
+    setOutputSelect(inputSelect);
+  };
 
   useEffect(() => {
     const mileMultiplier = 1.609344;
@@ -279,39 +318,6 @@ const ToolTabs = (props) => {
     }
   }, [inputSelect, inputValue, outputSelect]);
 
-  // Define the default values when you click on a tab
-  const changeTabHandler = (event) => {
-    let selectedTab = event.target.hasAttribute("aria-selected");
-    let selectedTabText = event.target.textContent;
-
-    if (selectedTab) {
-      if (selectedTabText === "Length") {
-        setInputSelect(toolTabs[0].units[0]);
-        setOutputSelect(toolTabs[0].units[1]);
-      } else if (selectedTabText === "Temperature") {
-        setInputSelect(toolTabs[1].units[0]);
-        setOutputSelect(toolTabs[1].units[1]);
-      } else if (selectedTabText === "Weight") {
-        setInputSelect(toolTabs[2].units[0]);
-        setOutputSelect(toolTabs[2].units[1]);
-      }
-    }
-  };
-
-  // Change the selected value when you click on another option
-  const changeInputValueHandler = (event) => {
-    let selectedValue = event.target.value;
-
-    setInputSelect(selectedValue);
-  };
-
-  // Change the selected value when you click on another option
-  const changeOutputValueHandler = (event) => {
-    let selectedValue = event.target.value;
-
-    setOutputSelect(selectedValue);
-  };
-
   return (
     <Tabs className={classes.Tabs}>
       <TabList>
@@ -339,13 +345,9 @@ const ToolTabs = (props) => {
                 onChange={changeInputValueHandler}
               />
             </div>
-            <img
-              src={swap}
-              alt="equals"
-              width="20px"
-              height="22px"
-              className={classes["conversion-img"]}
-            />
+            <button type="button" onClick={swapUnitSelectHandler}>
+              <img src={swap} alt="swap" width="30px" height="30px" />
+            </button>
             <div className={classes["conversion-control"]}>
               <div className={classes["conversion-output"]}>{result}</div>
               <Select
