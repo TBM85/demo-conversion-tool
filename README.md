@@ -18,3 +18,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Enter in the directory: `cd demo-conversion-tool`
 * Install dependencies: `npm install`
 * Start the app: `npm start`
+
+## License
+Copyright (c) 2021 Tania Ballester. This project is using [MIT License](LICENSE.md)
