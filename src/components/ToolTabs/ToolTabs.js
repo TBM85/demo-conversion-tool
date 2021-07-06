@@ -10,6 +10,12 @@ const ToolTabs = (props) => {
   const { toolTabs } = props;
 
   const [inputValue, setInputValue] = useState(1);
+  const [result, setResult] = useState();
+
+  const [inputSelect, setInputSelect] = useState("kilometer");
+  const [outputSelect, setOutputSelect] = useState("meter");
+
+  // Changes the value when a new one is entered
   const changeValueHandler = (event) => {
     setInputValue(event.target.value);
   };
@@ -32,11 +38,6 @@ const ToolTabs = (props) => {
       }
     }
   };
-
-  const [result, setResult] = useState();
-
-  const [inputSelect, setInputSelect] = useState("kilometer");
-  const [outputSelect, setOutputSelect] = useState("meter");
 
   // Change the selected value when you click on another option
   const changeInputValueHandler = (event) => {
@@ -316,7 +317,7 @@ const ToolTabs = (props) => {
         setResult(inputValue / (poundMultiplier / ounceMultiplier));
       }
     }
-  }, [inputSelect, inputValue, outputSelect]);
+  }, [inputSelect, inputValue, outputSelect, result]);
 
   return (
     <Tabs className={classes.Tabs}>
@@ -346,7 +347,11 @@ const ToolTabs = (props) => {
                 onChange={changeInputValueHandler}
               />
             </div>
-            <button type="button" onClick={swapUnitSelectHandler}>
+            <button
+              type="button"
+              onClick={swapUnitSelectHandler}
+              aria-label="Swap Units"
+            >
               <img src={swap} alt="swap" width="30px" height="30px" />
             </button>
             <div className={classes["conversion-control"]}>
