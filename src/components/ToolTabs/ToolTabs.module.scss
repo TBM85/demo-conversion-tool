@@ -3,12 +3,18 @@
     display: block;
 
     .conversion-control {
-      padding: 1.2em;
+      padding: 0.6em;
 
       .conversion-output {
         margin: auto;
       }
+
+      .conversion-input,
+      .conversion-output {
+        height: 48px;
+      }
     }
+
     img {
       transform: rotate(90deg);
     }
@@ -20,6 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     .conversion-control {
       padding: 2.2em;
     }

@@ -335,6 +335,7 @@ const ToolTabs = (props) => {
               <input
                 type="number"
                 className={classes["conversion-input"]}
+                aria-label="number input"
                 value={inputValue}
                 onChange={changeValueHandler}
               />
