@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import './App.scss';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -45,3 +47,7 @@ function App() {
 }
 
 export default App;
+
+App.propTypes = {
+  toolTabs: PropTypes.object
+};

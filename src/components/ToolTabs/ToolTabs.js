@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import PropTypes from "prop-types";
 
 import classes from "./ToolTabs.module.scss";
 import swap from "../../assets/icons/swap.svg";
@@ -371,3 +372,10 @@ const ToolTabs = (props) => {
 };
 
 export default ToolTabs;
+
+ToolTabs.propTypes = {
+  inputValue: PropTypes.number,
+  result: PropTypes.number,
+  inputSelect: PropTypes.string,
+  outputSelect: PropTypes.string
+};
