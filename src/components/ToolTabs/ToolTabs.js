@@ -10,7 +10,7 @@ const ToolTabs = (props) => {
   const { toolTabs } = props;
 
   const [inputValue, setInputValue] = useState(1);
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(Number);
 
   const [inputSelect, setInputSelect] = useState("kilometer");
   const [outputSelect, setOutputSelect] = useState("meter");
@@ -105,9 +105,9 @@ const ToolTabs = (props) => {
 
     // Display the output values for temperature
     if (inputSelect === "celsius" && outputSelect === "fahrenheit") {
-      setResult((inputValue * (9 / 5) + 32).toFixed(2));
+      setResult(+((inputValue * (9 / 5) + 32).toFixed(2)));
     } else if (inputSelect === "fahrenheit" && outputSelect === "celsius") {
-      setResult(((inputValue - 32) * (5 / 9)).toFixed(2));
+      setResult(+((inputValue - 32) * (5 / 9)).toFixed(2));
     }
 
     // Display the output values for length
@@ -317,7 +317,7 @@ const ToolTabs = (props) => {
         setResult(inputValue / (poundMultiplier / ounceMultiplier));
       }
     }
-  }, [inputSelect, inputValue, outputSelect, result]);
+  }, [inputSelect, inputValue, outputSelect]);
 
   return (
     <Tabs className={classes.Tabs}>
