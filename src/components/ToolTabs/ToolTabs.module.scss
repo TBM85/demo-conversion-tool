@@ -44,9 +44,11 @@
     border-top-left-radius: 0.1em;
     border-top-right-radius: 0.1em;
     background: #ececec;
+    display: flex;
 
     li {
       padding: 0.5em 1em 0.8em !important;
+      flex: 1;
     }
   }
 
