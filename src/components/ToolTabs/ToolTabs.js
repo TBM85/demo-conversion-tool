@@ -30,12 +30,15 @@ const ToolTabs = (props) => {
       if (selectedTabText === "Length") {
         setInputSelect(toolTabs[0].units[0]);
         setOutputSelect(toolTabs[0].units[1]);
+        setInputValue(1);
       } else if (selectedTabText === "Temperature") {
         setInputSelect(toolTabs[1].units[0]);
         setOutputSelect(toolTabs[1].units[1]);
+        setInputValue(1);
       } else if (selectedTabText === "Weight") {
         setInputSelect(toolTabs[2].units[0]);
         setOutputSelect(toolTabs[2].units[1]);
+        setInputValue(1);
       }
     }
   };
