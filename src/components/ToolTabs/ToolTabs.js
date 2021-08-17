@@ -369,7 +369,11 @@ const ToolTabs = (props) => {
             </button>
             <div className={classes["conversion-control"]}>
               <div className={classes["conversion-output"]}>
-                {condition ? "" : result}
+                {condition
+                  ? ""
+                  : result.toString().length > 10
+                  ? result.toExponential(6)
+                  : result}
               </div>
               <Select
                 tab={tab}
