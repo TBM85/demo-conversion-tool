@@ -16,6 +16,8 @@ const ToolTabs = (props) => {
   const [inputSelect, setInputSelect] = useState("kilometer");
   const [outputSelect, setOutputSelect] = useState("meter");
 
+  const [nameTab, setNameTab] = useState("Length");
+
   // Changes the value when a new one is entered
   const changeValueHandler = (event) => {
     setInputValue(event.target.value);
@@ -31,14 +33,17 @@ const ToolTabs = (props) => {
         setInputSelect(toolTabs[0].units[0]);
         setOutputSelect(toolTabs[0].units[1]);
         setInputValue(1);
+        setNameTab(toolTabs[0].title);
       } else if (selectedTabText === "Temperature") {
         setInputSelect(toolTabs[1].units[0]);
         setOutputSelect(toolTabs[1].units[1]);
         setInputValue(1);
+        setNameTab(toolTabs[1].title);
       } else if (selectedTabText === "Weight") {
         setInputSelect(toolTabs[2].units[0]);
         setOutputSelect(toolTabs[2].units[1]);
         setInputValue(1);
+        setNameTab(toolTabs[2].title);
       }
     }
   };
@@ -109,7 +114,7 @@ const ToolTabs = (props) => {
 
     // Display the output values for temperature
     if (inputSelect === "celsius" && outputSelect === "fahrenheit") {
-      setResult(+((inputValue * (9 / 5) + 32).toFixed(2)));
+      setResult(+(inputValue * (9 / 5) + 32).toFixed(2));
     } else if (inputSelect === "fahrenheit" && outputSelect === "celsius") {
       setResult(+((inputValue - 32) * (5 / 9)).toFixed(2));
     }
@@ -323,6 +328,9 @@ const ToolTabs = (props) => {
     }
   }, [inputSelect, inputValue, outputSelect]);
 
+  const condition =
+    (nameTab === "Length" || nameTab === "Weight") && inputValue < 1;
+
   return (
     <Tabs className={classes.Tabs}>
       <TabList>
@@ -341,8 +349,9 @@ const ToolTabs = (props) => {
                 type="number"
                 className={classes["conversion-input"]}
                 aria-label="number input"
-                value={inputValue}
+                value={condition ? "" : inputValue}
                 onChange={changeValueHandler}
+                placeholder={condition ? "Positive number" : ""}
               />
               <Select
                 tab={tab}
@@ -359,7 +368,9 @@ const ToolTabs = (props) => {
               <img src={swap} alt="swap" width="30px" height="30px" />
             </button>
             <div className={classes["conversion-control"]}>
-              <div className={classes["conversion-output"]}>{result}</div>
+              <div className={classes["conversion-output"]}>
+                {condition ? "" : result}
+              </div>
               <Select
                 tab={tab}
                 className={classes["conversion-select"]}
@@ -380,5 +391,5 @@ ToolTabs.propTypes = {
   inputValue: PropTypes.number,
   result: PropTypes.number,
   inputSelect: PropTypes.string,
-  outputSelect: PropTypes.string
+  outputSelect: PropTypes.string,
 };
